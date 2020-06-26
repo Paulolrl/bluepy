@@ -535,7 +535,7 @@ class Peripheral(BluepyHelper):
         self._writeCmd("rdu %s %X %X\n" % (UUID(uuid), startHnd, endHnd))
         return self._getResp('rd')
 
-    def writeCharacteristic(self, handle, val, withResponse=False, timeout=20):
+    def writeCharacteristic(self, handle, val, withResponse=False, timeout=60):
         # Without response, a value too long for one packet will be truncated,
         # but with response, it will be sent as a queued write
         cmd = "wrr" if withResponse else "wr"
