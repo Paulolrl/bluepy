@@ -525,9 +525,9 @@ class Peripheral(BluepyHelper):
         ndesc = len(resp['hnd'])
         return [Descriptor(self, resp['uuid'][i], resp['hnd'][i]) for i in range(ndesc)]
 
-    def readCharacteristic(self, handle, timeout=60):
+    def readCharacteristic(self, handle):
         self._writeCmd("rd %X\n" % handle)
-        resp = self._getResp('rd', timeout)
+        resp = self._getResp('rd')
         return resp['d'][0]
 
     def _readCharacteristicByUUID(self, uuid, startHnd, endHnd):
